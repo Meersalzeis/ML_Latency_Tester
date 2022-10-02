@@ -2,8 +2,8 @@ import data_refinery, testbench, result_refinery, matplotlib_code
 import data_reader, ZENODO_reader
 
 #text_file_name = "./Datasets/LadenKeller1.txt"
-text_file_name = "./Datasets/testInput.txt"
-#text_file_name = "./Datasets/testInput2.txt"
+#text_file_name = "./Datasets/testInput.txt"
+text_file_name = "./Datasets/testInput2.txt"
 
 # read in raw data
 #np_addresses, np_abs_times, np_rtts = ZENODO_reader.read_file( "./Datasets/dataset-op.csv" )

@@ -4,7 +4,7 @@ import classification
 
 import numpy as np
 import time
-from timeit import timeit
+import timeit
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
 
@@ -27,14 +27,11 @@ class W_LRC( classification.classification_MLA ) :
         results = []
 
         for i in range(0, should_be_data.size):
-            global prediction_point, this
-            prediction_point = np.NAN
-            this = self
-            start_time = time.time()
-            timeit_needed = timeit("global thisprediction_point = this.lrc.predict(  np.array([input_data[i]])  )", number=1, globals=globals())
-            end_time = time.time()
-            time_needed = (end_time - start_time) * 1000 # s to ms
-            print("timeit=", timeit_needed, " and time=",time_needed)
+            
+            start_time = timeit.default_timer()
+            prediction_point = self.lrc.predict(  np.array([input_data[i]])  )
+            end_time = timeit.default_timer()
+            time_needed = (end_time - start_time)
 
             results.append(np.array([prediction_point[0], time_needed], dtype=object))
 
