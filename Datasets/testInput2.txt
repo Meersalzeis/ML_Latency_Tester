@@ -1,0 +1,27 @@
+This line is for info and will be ignored, this is a test input set
+www.testSite1.com + 166262750000 + 120
+www.testSite1.com + 166262752000 + 98
+www.testSite1.com + 166262754000 + 112
+www.testSite1.com + 166262756000 + 89
+www.testSite1.com + 166262758000 + 93
+www.testSite1.com + 166262760000 + 94
+www.testSite1.com + 166262762000 + 96
+www.testSite1.com + 166262764000 + 83
+www.testSite1.com + 166262766000 + 90
+www.testSite1.com + 166262768000 + 120
+www.testSite1.com + 166262770000 + 98
+www.testSite1.com + 166262772000 + 112
+www.testSite1.com + 166262774000 + 89
+www.testSite1.com + 166262778000 + 93
+www.testSite1.com + 166262780000 + 94
+www.testSite1.com + 166262782000 + 83
+www.testSite1.com + 166262784000 + 90
+www.testSite1.com + 166262786000 + 120
+www.testSite1.com + 166262788000 + 98
+www.testSite1.com + 166262790000 + 112
+www.testSite1.com + 166262792000 + 89
+www.testSite1.com + 166262794000 + 93
+www.testSite1.com + 166262796000 + 94
+www.testSite1.com + 166262798000 + 96
+www.testSite1.com + 166262800000 + 83
+www.testSite1.com + 166262807000 + 90
