@@ -23,7 +23,7 @@ def display(input_data, prediction_data):
         plt.title("pings to "+address)
         plt.xlabel("time relative to previous ping in ms")
         plt.ylabel("round trip time in ms")
-        plt.plot(x , y, 'o')
+        plt.plot(y , x, 'o')
         plt.show()
 
         # For each ML we applied to that datas address, show results
@@ -44,8 +44,8 @@ def display(input_data, prediction_data):
 
             # plot lines
             plt.title(MLA_name)
-            plt.bar(np.arange(len(should_be))-0.15, should_be, width=0.3,  label = "real rtts")
-            plt.bar(np.arange(len(predicted))+0.15, predicted, width=0.3, label = "predicted rtts")
+            plt.bar(np.arange(len(should_be))-0.2, should_be, width=0.4,  label = "real rtts")
+            plt.bar(np.arange(len(predicted))+0.2, predicted, width=0.4, label = "predicted rtts")
             #plt.bar(indexes, calc_time, label = "calculation time")
             plt.xlabel("index of data point")
             plt.ylabel("round trip time in ms")
