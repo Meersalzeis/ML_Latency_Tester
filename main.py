@@ -1,8 +1,8 @@
 import data_refinery, testbench, result_refinery, matplotlib_code
 import data_reader, ZENODO_reader
 
-#text_file_name = "./Datasets/LadenKeller1.txt"
-text_file_name = "./Datasets/testInput.txt"
+text_file_name = "./Datasets/LadenKeller1.txt"
+#text_file_name = "./Datasets/testInput.txt"
 #text_file_name = "./Datasets/testInput2.txt"
 
 # read in raw data

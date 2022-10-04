@@ -1,5 +1,4 @@
 import numpy as np
-import time
 import timeit
 
 from MLA import MLA
@@ -49,9 +48,9 @@ class lastXavg:
         results = []
         for i in range(0, test_output.size):
 
-            start_time = time.time()
+            start_time = timeit.default_timer()
             predicted_point = self.pred_value()
-            end_time = time.time()
+            end_time = timeit.default_timer()
 
             time_needed = (end_time - start_time) * 1000 # convert from seconds to ms
 

@@ -1,5 +1,8 @@
 import numpy as np
 
+NR_OF_INPUT_POINTS_PER_PREDICTION = 5
+N = NR_OF_INPUT_POINTS_PER_PREDICTION
+
 # sorts by address and creates relative time from absolute time
 # returns a dictionary with addresses as keys, datasets with rtts and corresponding recording times as content
 def refine(addresses, abs_times, rtts):

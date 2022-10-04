@@ -3,7 +3,7 @@ from sklearn.svm import SVC
 import classification
 
 import numpy as np
-import time
+import timeit
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html?highlight=svc
 
@@ -24,9 +24,9 @@ class W_SVC( classification.classification_MLA ) :
         results = []
 
         for i in range(0, should_be_data.size):
-            start_time = time.time()
+            start_time = timeit.default_timer()
             prediction_point = self.svc.predict(  np.array([input_data[i]])  )
-            end_time = time.time()
+            end_time = timeit.default_timer()
             time_needed = (end_time - start_time) * 1000 # s to ms
 
             results.append(np.array([prediction_point[0], time_needed], dtype=object))

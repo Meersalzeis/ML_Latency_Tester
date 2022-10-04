@@ -42,9 +42,7 @@ def test_mls(test_data, test_should_be):
     MLs_Prediciton_Results.update( {"names": MLA_names_list })
 
     for i in range (0, ML_count) :
-        print("Test_should be shape = ", test_should_be.shape)
         this_MLs_results = ML_list[i].test(test_data, test_should_be)
-        print("this_MLs_rsults shape  = ", this_MLs_results.shape)
 
         MLs_Prediciton_Results.update( {i: this_MLs_results} )
         #results[i] = this_MLs_results

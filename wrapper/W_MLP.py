@@ -1,4 +1,4 @@
-import time
+import timeit
 import numpy as np
 from sklearn.neural_network import MLPRegressor
 
@@ -21,9 +21,9 @@ class W_MLP():
         results = []
 
         for i in range(0, should_be_data.size):
-            start_time = time.time()
+            start_time = timeit.default_timer()
             prediction_point = self.mlp.predict(  np.array([input_data[i]])  )
-            end_time = time.time()
+            end_time = timeit.default_timer()
             time_needed = (end_time - start_time) * 1000 # s to ms
 
             results.append(np.array([prediction_point[0], time_needed], dtype=object))
