@@ -17,7 +17,7 @@ class W_DecTree( classification.classification_MLA ) :
     def fit(self, input_data, real_rtts):
 
         classified_data = self.rtt_to_class_nrs(real_rtts)
-
+        print(input_data)
         self.decTree.fit(input_data, classified_data)
     
     def test(self, input_data, should_be_data):

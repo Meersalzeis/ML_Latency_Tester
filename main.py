@@ -18,8 +18,11 @@ print("refined input")
 # raw_output becomes a dictionary of prediciton results for each address, each being a dicitonary of results of MLs, keyed by numbers
 raw_output = {} # new dictionary
 for address in refined_input:
-    rtts, rel_times = refined_input[address].get_values() 
-    raw_output.update( {address : testbench.evaluate( rtts, rel_times )} ) # add to dict
+    rtts, abs_times, input = refined_input[address].get_values()
+    refined_address_data = testbench.evaluate( rtts, input, abs_times )
+
+    raw_output.update({ address : refined_address_data }) # add to dict
+
 print("evaluated")
 
 # put the sets into the testbench, and ggf.process results

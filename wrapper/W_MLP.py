@@ -13,7 +13,7 @@ class W_MLP():
 
     def fit(self, input_data, output_data):
 
-        print("MLP - input shape: " , input_data.shape, " output shape:", output_data.shape)
+        #print("MLP - input: " , input_data, " output shape:", output_data.shape)
 
         self.mlp.fit(input_data, output_data)
     

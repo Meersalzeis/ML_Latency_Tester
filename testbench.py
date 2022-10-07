@@ -13,20 +13,26 @@ ML_list = []
 MLA_names_list = []
 
 # evaluates rtts and rel_times of a single address
-def evaluate(rtts, rel_times):
+def evaluate(rtts, input, abs_times):
     
+    # initialize and split data into set to train and set to test with
     make_ML_list()
+    train_input, test_input, train_output, test_should_be = split_data(rtts, input)
 
-    train_input, test_input, train_output, test_should_be = split_data(rtts, rel_times)
+    # cut abs_times to only test
+    abs_times = abs_times[-len(test_should_be):]
 
+    # train, test and add abs_times
     train_mls(train_input, train_output)
-    return test_mls(test_input, test_should_be)
+    all_addresses_result = test_mls(test_input, test_should_be)
+    all_addresses_result.update({ "abs_times": abs_times })
+
+    return all_addresses_result
 
 
 # train all Machine Learning Algorithms (in ML_list) with given train-data
 def train_mls(train_input, train_output):
     for MLA in ML_list:
-        #print("fit alg " + str(MLA) )
         MLA.fit( train_input, train_output)
 
 
@@ -37,8 +43,8 @@ def test_mls(test_data, test_should_be):
     MLs_Prediciton_Results = {} # new empty dictionary
 
     # add input parameters for understanding / displaying
-    MLs_Prediciton_Results.update( {"time": test_data})
-    MLs_Prediciton_Results.update( {"real_values": test_should_be})
+    #MLs_Prediciton_Results.update( {"input": test_data})
+    MLs_Prediciton_Results.update( {"real_rtt": test_should_be})
     MLs_Prediciton_Results.update( {"names": MLA_names_list })
 
     for i in range (0, ML_count) :

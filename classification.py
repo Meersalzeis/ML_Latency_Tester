@@ -14,7 +14,7 @@ class classification_MLA(MLA):
         categorized = np.zeros( rtt_array.shape )
 
         for index in range(0, np.size(rtt_array)):
-            temp = self.rtt_to_class_nr( rtt_array[index][0] )
+            temp = self.rtt_to_class_nr( rtt_array[index] )
             categorized[index] = temp
 
         #print( categorized )

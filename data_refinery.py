@@ -1,7 +1,6 @@
 import numpy as np
 
-NR_OF_INPUT_POINTS_PER_PREDICTION = 5
-N = NR_OF_INPUT_POINTS_PER_PREDICTION
+NR_OF_INPUT_POINTS_PER_PREDICTION = 3
 
 # sorts by address and creates relative time from absolute time
 # returns a dictionary with addresses as keys, datasets with rtts and corresponding recording times as content
@@ -21,8 +20,54 @@ def refine(addresses, abs_times, rtts):
     return datasets
 
 
+
 # stores and prcoesses information of 1 address
 class Address_data_set() :
+
+    entries = [] # add up all entries
+
+    # save older data to compute the input for newer sets
+    rtts = []
+    abs_times = []
+
+    def add_values(self, new_rtt, abs_time):
+        N = NR_OF_INPUT_POINTS_PER_PREDICTION
+        index = len(self.rtts)
+
+        # make new relative time and keep abs_time updated
+        older_rtts = [] # list
+        older_times = []
+
+        # For every point we include in the input
+        for i in range(0,N):
+
+            # calculate index offset
+            offset_index = len(self.rtts) - i
+
+            if offset_index <= 0:
+                # add rtts and time substitute
+                older_rtts.append(0)
+                older_times.append(2147483647) # max value of float32, larger is restricted by some ML_Algorithm
+            else:
+                # add rtts and relative time to this, new ping   -1 because we look for the pings before
+                older_rtts.append(self.rtts[offset_index-1])
+                older_times.append( abs_time - self.abs_times[offset_index-1] )
+
+        # add values for new point
+        entry = np.concatenate((np.asarray(older_rtts), np.asarray(older_times)))
+        self.entries.append(entry)
+
+        # add new point to old points
+        self.rtts.append(new_rtt)
+        self.abs_times.append(abs_time)
+    
+    def get_values(self):
+        return np.asarray(self.rtts), np.asarray(self.abs_times), np.asarray(self.entries).squeeze()
+        
+
+
+# depricated class, stores and prcoesses information of 1 address
+class old_Address_data_set() :
 
     rtts = []
     rel_times = []

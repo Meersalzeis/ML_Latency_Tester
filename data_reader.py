@@ -34,7 +34,7 @@ def addNextLine(file_reader):
     pieces = line.split(separator)
 
     if len (pieces) != 3:
-        print("error in line " + + "! too many separators! " + separator )
+        print("error in line " + line + "! too many separators! " + separator )
         return False
     
     addresses.append(pieces[0])

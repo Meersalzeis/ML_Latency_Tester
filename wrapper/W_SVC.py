@@ -12,7 +12,7 @@ class W_SVC( classification.classification_MLA ) :
     svc = SVC()
 
     def get_name(self):
-        return "Support Vector Machine - Classification"
+        return "Lineare Support Vector Machine - Classification"
 
     def fit(self, input_data, real_rtts):
 

@@ -13,15 +13,11 @@ def display(input_data, prediction_data):
         print("new address")
 
         # First show the input
-        x_in_array, y = predictions["real_values"], predictions["time"]
-        x = np.zeros(len(x_in_array))
-        for i in range(len(x_in_array)):
-            cur_x_item = x_in_array[i]
-            x[i] = cur_x_item[0]
+        x, y = predictions["real_rtt"], predictions["abs_times"]
 
         plt.subplots(nrows=1, num="pings to "+address)
         plt.title("pings to "+address)
-        plt.xlabel("time relative to previous ping in ms")
+        plt.xlabel("start of ping in ms since 1970 began")
         plt.ylabel("round trip time in ms")
         plt.plot(y , x, 'o')
         plt.show()
@@ -31,8 +27,8 @@ def display(input_data, prediction_data):
         MLA_name_list = predictions["names"]
         MLA_name = "not set yet"
         
-        nr_of_shown_datapoints = len(predictions)-3
-        for MLA_nr in range(0, nr_of_shown_datapoints ): # -3 for "time", "names" and "real_value" keys, rest are MLAs
+        nr_of_shown_datapoints = len(predictions)-2
+        for MLA_nr in range(0, nr_of_shown_datapoints ): # -2 for , "names" and "real_rtt" keys, rest are MLAs
             current_predictions = predictions[MLA_nr]
             MLA_name = MLA_name_list[MLA_nr]
 
