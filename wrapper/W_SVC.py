@@ -9,10 +9,10 @@ import timeit
 
 class W_SVC( classification.classification_MLA ) :
 
-    svc = SVC()
+    svc = SVC(kernel='poly')
 
     def get_name(self):
-        return "Lineare Support Vector Machine - Classification"
+        return "Support Vector Machine - Classification"
 
     def fit(self, input_data, real_rtts):
 
