@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 
 from ML_Algs.last_x_avg import lastXavg
 
-TEST_SET_RATIO = 0.25
+TEST_SET_RATIO = 0.1
 ML_list = []
 MLA_names_list = []
 
@@ -26,6 +26,9 @@ def evaluate(rtts, input, abs_times):
     train_mls(train_input, train_output)
     all_addresses_result = test_mls(test_input, test_should_be)
     all_addresses_result.update({ "abs_times": abs_times })
+
+    # add data about how many data points in total for display
+    all_addresses_result.update({ "nr_total_datapoints": len(rtts) })
 
     return all_addresses_result
 
@@ -62,17 +65,16 @@ def make_ML_list():
 
     # Regression
     ML_list.append( lastXavg(10) ) # last X values as average
-    ML_list.append( lastXavg(3) ) # last X values as average
-    ML_list.append( W_MLP() ) # Multi layer perceptron for regression
+    #ML_list.append( lastXavg(3) ) # last X values as average
+    #ML_list.append( W_MLP() ) # Multi layer perceptron for regression
 
     # Classification
-    ML_list.append( W_DecTree() )
+    ML_list.append( W_DecTree() ) # Decision Tree
+    ML_list.append( W_LRC() ) # Yes this is inly classification despite Regression in its name
 
     # Both Regression and Classification
     ML_list.append( W_SVR() ) # support vector machine for regression
-    ML_list.append( W_SVC() ) # support vector machine for classification
-    # TODO MAYBE Logistic Regression
-    ML_list.append( W_LRC() )
+    #ML_list.append( W_SVC() ) # support vector machine for classification
 
     global MLA_names_list
     MLA_names_list = []

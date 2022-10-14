@@ -3,7 +3,6 @@ from sklearn.linear_model import LogisticRegression
 import classification
 
 import numpy as np
-import time
 import timeit
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html

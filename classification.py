@@ -1,8 +1,12 @@
 import numpy as np
 from MLA import MLA
 
-limits = (30, 40, 50, 60, 70, 80, 90, 100, 150, 200) # limits for pings to servers
-# limits = (100, 500, 1000, 5000) # limits for uploading
+# limits for the classes of the classification
+#limits = (30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 300, 500, 750, 1000) # geschätzt
+#limits = (20, 30, 50, 80, 130, 210, 340, 550, 890, 1440) # fibonacci
+#limits = (10, 17, 31, 56, 100, 177, 316, 562, 1000) # exp in 4er Schritten
+limits = (20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000) # 10er dann 100er Schritte
+
 
 def categoryCount():
     return len(limits)
