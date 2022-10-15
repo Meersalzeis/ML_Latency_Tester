@@ -30,7 +30,7 @@ class W_LRC( classification.classification_MLA ) :
             start_time = timeit.default_timer()
             prediction_point = self.lrc.predict(  np.array([input_data[i]])  )
             end_time = timeit.default_timer()
-            time_needed = (end_time - start_time)
+            time_needed = (end_time - start_time) * 1000 # seconds to ms
 
             results.append(np.array([prediction_point[0], time_needed], dtype=object))
 

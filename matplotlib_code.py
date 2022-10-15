@@ -54,8 +54,13 @@ def display(input_data, prediction_data):
             time_comparison.update( {MLA_name: calc_time} )
             error_comparison.update( {MLA_name: error} )
             
+            # statistical numbers
             print("current algorithm = " + MLA_name )
             print("Max Error = ", np.max(error)) 
+            print("Median of error: ", np.median(error))
+            print("Average of error: ", np.average(error))
+            print("Variance of error: ", np.var(error))
+            print("Standard Deviation of error: ", np.std(error))
             # TODO Gini index or other error measurements (size of 5% worst errors?)
 
             # show plot

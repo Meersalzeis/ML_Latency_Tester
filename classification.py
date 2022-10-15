@@ -5,7 +5,7 @@ from MLA import MLA
 #limits = (30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 300, 500, 750, 1000) # geschätzt
 #limits = (20, 30, 50, 80, 130, 210, 340, 550, 890, 1440) # fibonacci
 #limits = (10, 17, 31, 56, 100, 177, 316, 562, 1000) # exp in 4er Schritten
-limits = (20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000) # 10er dann 100er Schritte
+limits = (10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000) # 10er dann 100er Schritte
 
 
 def categoryCount():
@@ -35,6 +35,9 @@ class classification_MLA(MLA):
                 current_limit_nr = current_limit_nr + 1
 
             else:
-                return limits[current_limit_nr]
+                if current_limit_nr == 0:
+                    return limits[0] / 2
+                else:
+                    return ( limits[current_limit_nr] + limits[current_limit_nr-1] ) / 2
         
         return 9999
