@@ -33,6 +33,20 @@ def evaluate(rtts, input, abs_times):
     return all_addresses_result
 
 
+def evaluate_change_test( train_rtts, train_abs_times, train_input, test_rtts, test_abs_times, test_input ):
+    # initialize and split data into set to train and set to test with
+    make_ML_list()
+    abs_times = np.append(train_abs_times, test_abs_times)
+
+    train_mls(train_input, train_rtts)
+    all_addresses_result = test_mls(test_input, test_rtts)
+    all_addresses_result.update({ "abs_times": abs_times })
+
+    # add data about how many data points in total for display
+    all_addresses_result.update({ "nr_total_datapoints": len( abs_times ) })
+
+    return all_addresses_result
+
 # train all Machine Learning Algorithms (in ML_list) with given train-data
 def train_mls(train_input, train_output):
     for MLA in ML_list:

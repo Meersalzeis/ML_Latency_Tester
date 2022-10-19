@@ -14,6 +14,7 @@ def display(input_data, prediction_data):
         x, y = predictions["real_rtt"], predictions["abs_times"]
         nr_total_datapoints = predictions["nr_total_datapoints"]
         should_be = x
+        index_list = np.arange(len(should_be))
         print("new address")
 
         # print statistics to input
@@ -25,11 +26,27 @@ def display(input_data, prediction_data):
         print("Number of Data set total: ", nr_total_datapoints)
 
         # show the input
-        plt.subplots(nrows=1, num="pings to "+address)
+        plt.title("Dataset pings")
+
+        plt.subplot(1, 2, 1)
         plt.title("pings to "+address)
         plt.xlabel("minutes since first ping")
-        plt.ylabel("round trip time in ms")
+        plt.ylabel("round trip time (RTT) in ms")
         plt.plot(y , x, 'o')
+
+        x_max = np.max(x)
+        histogramm = np.arange(x_max+1)
+        i = 0
+        while i < x_max+1 :
+            histogramm[i] = np.count_nonzero( x == i )
+            i += 1
+
+        plt.subplot(1, 2, 2)
+        plt.title("histogramm pings to "+address)
+        plt.xlabel("occurences of RTT size")
+        plt.ylabel("round trip time (RTT) in ms")
+        plt.plot( histogramm )
+
         plt.show()
 
         # Helpers for MLA display
@@ -37,7 +54,6 @@ def display(input_data, prediction_data):
         MLA_name = "not set yet"
         error_comparison = {}
         time_comparison = {}
-        index_list = np.arange(len(should_be))
 
         # For each ML we applied to that datas address, show results
         nr_of_shown_datapoints = len(predictions)-4 # -4 for keys that dont represent MLAs, like "real_rtt"
