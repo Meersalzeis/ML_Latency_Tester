@@ -78,7 +78,6 @@ def display(input_data, prediction_data):
             print("Variance of error: ", np.var(error))
             print("Standard Deviation of error: ", np.std(error))
             print("Total Error :", np.sum(error) )
-            # TODO Gini index or other error measurements (size of 5% worst errors?)
 
             # show plot
             plt.title(MLA_name)
@@ -109,7 +108,7 @@ def display(input_data, prediction_data):
         
         plt.title("runtime comparison")
         plt.xlabel("index of data point")
-        plt.ylabel("round trip time in ms")
+        plt.ylabel("runtime ms")
         plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
         plt.tight_layout()
         plt.show()

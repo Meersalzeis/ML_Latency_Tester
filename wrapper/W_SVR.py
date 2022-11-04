@@ -4,7 +4,7 @@ from sklearn.svm import SVR
 
 class W_SVR() :
 
-    svr = SVR()
+    svr = SVR(kernel= 'poly')
 
     def get_name(self):
         return "Support Vector Machine - Regression"
