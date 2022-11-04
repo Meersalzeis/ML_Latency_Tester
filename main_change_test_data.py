@@ -4,15 +4,15 @@ import data_reader
 #train_file_name = "./Datasets/100pointsOf50.txt"
 #test_file_name = "./Datasets/100pointsOf100.txt"
 
-#train_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 train_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
+#train_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 #train_file_name= "./Datasets/LadenMobilnetz1.txt"  # Mobilnetz 1 (schlechter Empfang)
 #train_file_name = "./Datasets/Mobil2.txt"  # Mobilnetz 2 (besserer Empfang)
 
-test_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 #test_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
+#test_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 #test_file_name= "./Datasets/LadenMobilnetz1.txt"  # Mobilnetz 1 (schlechter Empfang)
-#test_file_name = "./Datasets/Mobil2.txt"  # Mobilnetz 2 (besserer Empfang)
+test_file_name = "./Datasets/Mobil2.txt"  # Mobilnetz 2 (besserer Empfang)
 
 # read in raw data
 train_addresses, train_abs_times, train_rtts = data_reader.read_file( train_file_name )
@@ -27,8 +27,10 @@ print("refined input")
 # evaluate the MLAs for each address separately, but use same address for test
 raw_output = {} # new dictionary
 for address in refined_train_input:
+    print("Adress is " , address)
     train_rtts, train_abs_times, train_input = refined_train_input[address].get_values()
     test_rtts, test_abs_times, test_input = refined_test_input[address].get_values()
+    print("ALT_MAIN ITER - train data size", len(train_abs_times), " and test data size ", len(test_abs_times))
 
     refined_address_data = testbench.evaluate_change_test( train_rtts, train_abs_times, train_input, test_rtts, test_abs_times, test_input )
 

@@ -4,8 +4,8 @@ import data_reader, ZENODO_reader
 #text_file_name = "./Datasets/LadenKeller1.txt"
 #text_file_name = "./Datasets/mobilShortened1.txt"
 
-text_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
-#text_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
+text_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
+#text_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 #text_file_name = "./Datasets/LadenMobilnetz1.txt"  # Mobilnetz 1 (schlechter Empfang)
 #text_file_name = "./Datasets/Mobil2.txt"  # Mobilnetz 2 (besserer Empfang)
 

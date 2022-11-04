@@ -77,6 +77,7 @@ def display(input_data, prediction_data):
             print("Average of error: ", np.average(error))
             print("Variance of error: ", np.var(error))
             print("Standard Deviation of error: ", np.std(error))
+            print("Total Error :", np.sum(error) )
             # TODO Gini index or other error measurements (size of 5% worst errors?)
 
             # show plot

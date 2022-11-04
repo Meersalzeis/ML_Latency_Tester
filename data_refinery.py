@@ -1,3 +1,4 @@
+from xml.sax.handler import EntityResolver
 import numpy as np
 
 NR_OF_INPUT_POINTS_PER_PREDICTION = 3
@@ -17,22 +18,34 @@ def refine(addresses, abs_times, rtts):
         # add values to set
         datasets[addresses[i]].add_values( int(rtts[i]), int(abs_times[i])  )
 
+    reset()
     return datasets
 
-
+def reset():
+    global abs_times
+    global entries
+    global rtts
+    abs_times = []
+    entries = []
+    rtts = []
 
 # stores and prcoesses information of 1 address
 class Address_data_set() :
 
-    entries = [] # add up all entries
-
+    """ removed because class variables, not instance variables
     # save older data to compute the input for newer sets
     rtts = []
     abs_times = []
+    entries = [] # add up all entries
+    """
+
+    def __init__(self):
+        self.rtts = []
+        self.abs_times = []
+        self.entries = [] # add up all entries / input
 
     def add_values(self, new_rtt, abs_time):
         N = NR_OF_INPUT_POINTS_PER_PREDICTION
-        index = len(self.rtts)
 
         # make new relative time and keep abs_time updated
         older_rtts = [] # list
@@ -63,6 +76,8 @@ class Address_data_set() :
     
     def get_values(self):
         return np.asarray(self.rtts), np.asarray(self.abs_times), np.asarray(self.entries).squeeze()
+    
+
         
 
 

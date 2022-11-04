@@ -1,4 +1,6 @@
 import numpy as np
+import math
+
 from wrapper.W_DecTree import W_DecTree
 from wrapper.W_LRC import W_LRC
 from wrapper.W_MLP import W_MLP
@@ -35,22 +37,32 @@ def evaluate(rtts, input, abs_times):
 
 def evaluate_change_test( train_rtts, train_abs_times, train_input, test_rtts, test_abs_times, test_input ):
     # initialize and split data into set to train and set to test with
-    make_ML_list()
-    abs_times = np.append(train_abs_times, test_abs_times)
+    
+    print("train data size", len(train_abs_times), " and test data size ", len(test_abs_times))
+    print(train_abs_times[:-1])
+    print(test_abs_times[0])
 
-    train_mls(train_input, train_rtts)
+    noutd = math.floor( train_input.size * 0.01 ) # noutd = Number Of Used Training Data
+
+    make_ML_list()
+
+    train_mls(   train_input[: noutd],   train_rtts[: noutd]  )
+    print("trained")
     all_addresses_result = test_mls(test_input, test_rtts)
-    all_addresses_result.update({ "abs_times": abs_times })
+    print("tested")
+    all_addresses_result.update({ "abs_times": test_abs_times })
 
     # add data about how many data points in total for display
-    all_addresses_result.update({ "nr_total_datapoints": len( abs_times ) })
+    all_addresses_result.update({ "nr_total_datapoints": len( test_abs_times ) })
 
     return all_addresses_result
 
 # train all Machine Learning Algorithms (in ML_list) with given train-data
 def train_mls(train_input, train_output):
     for MLA in ML_list:
+        print("training ", MLA.get_name() )
         MLA.fit( train_input, train_output)
+        print("done training")
 
 
 # let all Machine Learning Algorithms (in ML_list) predict given data points, with, if specified, correcting themselves after each point
@@ -78,9 +90,9 @@ def make_ML_list():
     ML_list = []
 
     # Regression
-    ML_list.append( lastXavg(10) ) # last X values as average
+    #ML_list.append( lastXavg(10) ) # last X values as average
     ML_list.append( lastXavg(3) ) # last X values as average
-    ML_list.append( W_MLP() ) # Multi layer perceptron for regression
+    #ML_list.append( W_MLP() ) # Multi layer perceptron for regression
 
     # Classification
     ML_list.append( W_DecTree() ) # Decision Tree
@@ -88,7 +100,7 @@ def make_ML_list():
 
     # Both Regression and Classification
     ML_list.append( W_SVR() ) # support vector machine for regression
-    ML_list.append( W_SVC() ) # support vector machine for classification
+    #ML_list.append( W_SVC() ) # support vector machine for classification
 
     global MLA_names_list
     MLA_names_list = []
