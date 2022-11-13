@@ -90,9 +90,9 @@ def make_ML_list():
     ML_list = []
 
     # Regression
-    #ML_list.append( lastXavg(10) ) # last X values as average
+    ML_list.append( lastXavg(10) ) # last X values as average
     ML_list.append( lastXavg(3) ) # last X values as average
-    #ML_list.append( W_MLP() ) # Multi layer perceptron for regression
+    ML_list.append( W_MLP() ) # Multi layer perceptron for regression
 
     # Classification
     ML_list.append( W_DecTree() ) # Decision Tree
@@ -100,7 +100,7 @@ def make_ML_list():
 
     # Both Regression and Classification
     ML_list.append( W_SVR() ) # support vector machine for regression
-    #ML_list.append( W_SVC() ) # support vector machine for classification
+    ML_list.append( W_SVC() ) # support vector machine for classification
 
     global MLA_names_list
     MLA_names_list = []

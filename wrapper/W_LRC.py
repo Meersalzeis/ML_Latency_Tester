@@ -11,7 +11,7 @@ import timeit
 
 class W_LRC( classification.classification_MLA ) :
 
-    lrc = LogisticRegression(tol=1e-8, solver='saga', penalty='elasticnet', max_iter=10000, l1_ratio=0.5) # C =1, tol=1e-4, penalty, max_iter=100 
+    lrc = LogisticRegression() # C =1, tol=1e-4, penalty, max_iter=100 
 
     def get_name(self):
         return "Logistic Regression Classification"

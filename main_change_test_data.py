@@ -4,8 +4,8 @@ import data_reader
 #train_file_name = "./Datasets/100pointsOf50.txt"
 #test_file_name = "./Datasets/100pointsOf100.txt"
 
-train_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
-#train_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
+#train_file_name = "./Datasets/LadenKeller2.txt"  # Stationär WLAN 1
+train_file_name = "./Datasets/WLAN2.txt"  # Stationär WLAN 2
 #train_file_name= "./Datasets/LadenMobilnetz1.txt"  # Mobilnetz 1 (schlechter Empfang)
 #train_file_name = "./Datasets/Mobil2.txt"  # Mobilnetz 2 (besserer Empfang)
 

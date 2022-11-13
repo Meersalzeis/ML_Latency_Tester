@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPRegressor
 
 class W_MLP():
 
-    mlp = MLPRegressor(hidden_layer_sizes=(25,))
+    mlp = MLPRegressor(hidden_layer_sizes=(100,), random_state=0, shuffle= False)
 
     def get_name(self):
         return "Multi Layer Perceptron (Regression)"

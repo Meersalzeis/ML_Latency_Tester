@@ -22,16 +22,16 @@ def display(input_data, prediction_data):
         print("Average of input: ", np.average(should_be))
         print("Variance of input: ", np.var(should_be))
         print("Standard Deviation of input: ", np.std(should_be))
-        print("Number of Test points: ", len(should_be))
+        print("Maximal RTT: ", np.max(should_be))
         print("Number of Data set total: ", nr_total_datapoints)
 
         # show the input
         plt.title("Dataset pings")
 
         plt.subplot(1, 2, 1)
-        plt.title("pings to "+address)
-        plt.xlabel("minutes since first ping")
-        plt.ylabel("round trip time (RTT) in ms")
+        plt.title("Pings zu "+address)
+        plt.xlabel("Minuten seit dem ersten Ping")
+        plt.ylabel("Round Trip Time (RTT) in ms")
         plt.plot(y , x, 'o')
 
         x_max = np.max(x)
@@ -42,9 +42,9 @@ def display(input_data, prediction_data):
             i += 1
 
         plt.subplot(1, 2, 2)
-        plt.title("histogramm pings to "+address)
-        plt.xlabel("occurences of RTT size")
-        plt.ylabel("round trip time (RTT) in ms")
+        plt.title("Histogramm von Pings zu "+address)
+        plt.xlabel("Round Trip Time (RTT) in ms")
+        plt.ylabel("Anzahl an RTT Wert in ms")
         plt.plot( histogramm )
 
         plt.show()
@@ -92,12 +92,13 @@ def display(input_data, prediction_data):
             #plt.scatter(index_list , predicted, label = "predicted rtts")
             #plt.scatter(index_list , error, label = "error")
 
+            plt.plot(index_list , error, label = "error", color = 'orangered')
             plt.plot(index_list , should_be, label = "real rtts", color = 'green')
             plt.plot(index_list , predicted, label = "predicted rtts", color = 'blue' )
-            plt.plot(index_list , error, label = "error", color = 'orangered')
+            
 
-            plt.xlabel("index of data point")
-            plt.ylabel("round trip time in ms")
+            plt.xlabel("Index der Datenpunkte")
+            plt.ylabel("Round Trip Time (RTT) in ms")
             plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
             plt.tight_layout()
             plt.show()
@@ -106,9 +107,9 @@ def display(input_data, prediction_data):
         for k in time_comparison.keys():
             plt.plot(index_list , time_comparison[k], label = k)
         
-        plt.title("runtime comparison")
-        plt.xlabel("index of data point")
-        plt.ylabel("runtime ms")
+        plt.title("Vergleich Laufzeit")
+        plt.xlabel("Index der Datenpunkte")
+        plt.ylabel("Laufzeit in ms")
         plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
         plt.tight_layout()
         plt.show()
@@ -118,9 +119,9 @@ def display(input_data, prediction_data):
             plt.plot(index_list , error_comparison[k], label = k)
         plt.plot(index_list, should_be, label = "measured rtt")
 
-        plt.title("error comparison")
-        plt.xlabel("index of data point")
-        plt.ylabel("error in ms")
+        plt.title("Vergleich absolute Fehler")
+        plt.xlabel("Index der Datenpunkte")
+        plt.ylabel("Fehler in ms")
         plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
         plt.tight_layout()
         plt.show()
@@ -131,9 +132,35 @@ def display(input_data, prediction_data):
             i += 1
             plt.bar(i, np.sum(error_comparison[k]), label = k )
         
-        plt.title("total error comparison")
-        plt.xlabel("Algorithm")
+        plt.title("Vergleich aufsummierte absolute Fehler")
+        plt.xlabel("Algorithmus")
+        plt.ylabel("Fehler in ms")
+        plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
+        plt.tight_layout()
+        plt.show()
+
+        """""
+        # show squared error comparison as graphs
+        for k in error_comparison.keys():
+            plt.plot(index_list , np.square(error_comparison[k]), label = k)
+        plt.plot(index_list, should_be, label = "measured rtt")
+
+        plt.title("squared error comparison")
+        plt.xlabel("index of data point")
         plt.ylabel("error in ms")
+        plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
+        plt.tight_layout()
+        plt.show()
+        """""
+        # show total squared error comparison
+        i = 0
+        for k in error_comparison.keys():
+            i += 1
+            plt.bar(i, np.sum(np.square(error_comparison[k])), label = k )
+        
+        plt.title("Vergleich aufsummierte quadrierte Fehler")
+        plt.xlabel("Algorithmus")
+        plt.ylabel("Fehler in ms")
         plt.legend(bbox_to_anchor=(1,1), loc = "upper left")
         plt.tight_layout()
         plt.show()
